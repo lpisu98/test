@@ -1,0 +1,24 @@
+name: JWPUG-1
+author: Federloi
+description: |-
+  Don't mess with my pugs
+
+  Site: {{link}}
+
+flag: srdnlen{pug5_4r3_cut3}
+
+provide:
+
+containers:
+  app:
+    build: ./app
+    resources:
+      limits:
+        cpu: 100m
+        memory: 100M
+    ports: [5000]
+
+expose:
+  app:
+    - target: 5000
+      http: jwpug
