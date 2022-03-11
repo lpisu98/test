@@ -1,0 +1,27 @@
+# .gitlab-ci.yml
+image: google/cloud-sdk:slim
+
+services:
+  - docker:dind
+
+stages:
+  - deploy
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  RCDS_RCTF_URL: http://localhost:8080/
+
+before_script:
+  - pip3 install rcds
+  - gcloud auth activate-service-account service-account@project.iam.gserviceaccount.com --key-file=$GCLOUD_SA_TOKEN
+  - gcloud config set project project
+  - gcloud auth configure-docker gcr.io --quiet
+  - gcloud container clusters get-credentials cluster --zone=zone
+
+deploy:
+  stage: deploy
+  when: manual
+  environment:
+    name: production
+  script:
+    - rcds deploy
